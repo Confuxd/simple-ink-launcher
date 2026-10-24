@@ -59,5 +59,18 @@
                 android:value=".LauncherMainActivity" />
 
         </activity>
+
+        <service
+            android:name=".LightService"
+            android:label="Luz frontal"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/light_service" />
+        </service>
     </application>
 </manifest>
