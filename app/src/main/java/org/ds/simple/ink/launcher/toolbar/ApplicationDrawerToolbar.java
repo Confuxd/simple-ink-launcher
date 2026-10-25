@@ -82,14 +82,14 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
         final ImageView icon = children.getImageView(R.id.last_app);
         final ComponentName component = readLastApp();
         if (component == null) {
-            icon.setVisibility(View.GONE);
+            icon.setVisibility(View.INVISIBLE);
             return;
         }
         try {
             icon.setImageDrawable(getContext().getPackageManager().getActivityIcon(component));
             icon.setVisibility(View.VISIBLE);
         } catch (PackageManager.NameNotFoundException e) {
-            icon.setVisibility(View.GONE);
+            icon.setVisibility(View.INVISIBLE);
         }
     }
 
