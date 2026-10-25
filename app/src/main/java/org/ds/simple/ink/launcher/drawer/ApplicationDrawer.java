@@ -28,6 +28,7 @@ import android.widget.GridView;
 import org.ds.simple.ink.launcher.apps.ApplicationInfo;
 import org.ds.simple.ink.launcher.apps.ApplicationRepository;
 import org.ds.simple.ink.launcher.settings.ApplicationSettings;
+import org.ds.simple.ink.launcher.toolbar.ApplicationDrawerToolbar;
 
 import java.util.Comparator;
 import java.util.List;
@@ -124,6 +125,12 @@ public class ApplicationDrawer extends GridView implements ApplicationRepository
             val applicationInfo = (ApplicationInfo) parent.getItemAtPosition(position);
             val intent = Intent.makeMainActivity(applicationInfo.getComponentName());
             intent.setFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            view.getContext()
+                    .getSharedPreferences(ApplicationDrawerToolbar.LAST_PREFS, Context.MODE_PRIVATE)
+                    .edit()
+                    .putString(ApplicationDrawerToolbar.LAST_KEY,
+                            applicationInfo.getComponentName().flattenToString())
+                    .apply();
             view.getContext().startActivity(intent);
         }
     }
