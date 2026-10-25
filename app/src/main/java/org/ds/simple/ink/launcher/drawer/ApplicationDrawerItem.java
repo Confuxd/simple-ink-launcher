@@ -20,6 +20,8 @@ package org.ds.simple.ink.launcher.drawer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.ds.simple.ink.launcher.R;
@@ -27,6 +29,8 @@ import org.ds.simple.ink.launcher.apps.ApplicationInfo;
 import org.ds.simple.ink.launcher.common.ViewCache;
 
 public class ApplicationDrawerItem extends LinearLayout {
+
+    private static final float ICON_RATIO = 0.38f;
 
     private final ViewCache children = new ViewCache(this);
 
@@ -37,6 +41,14 @@ public class ApplicationDrawerItem extends LinearLayout {
     @Override
     @SuppressWarnings("SuspiciousNameCombination")
     public void onMeasure(final int width, final int height) {
+        final int cellWidth = MeasureSpec.getSize(width);
+        if (cellWidth > 0) {
+            final ImageView icon = children.getImageView(R.id.item_icon);
+            final ViewGroup.LayoutParams lp = icon.getLayoutParams();
+            final int size = (int) (cellWidth * ICON_RATIO);
+            lp.width = size;
+            lp.height = size;
+        }
         // Used 'width' for both height and width so the layout keeps square shape
         super.onMeasure(width, width);
     }
