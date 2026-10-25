@@ -1,10 +1,13 @@
 package org.ds.simple.ink.launcher.toolbar;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import org.ds.simple.ink.launcher.LauncherSettingsActivity;
@@ -25,6 +28,9 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
     private static final String PREFS = "icon_scale";
     private static final String KEY = "columns";
 
+    public static final String LAST_PREFS = "last_app";
+    public static final String LAST_KEY = "component";
+
     private final ViewCache children = new ViewCache(this);
 
     public ApplicationDrawerToolbar(final Context context, final AttributeSet attrs) {
@@ -32,6 +38,7 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
         inflate(context, R.layout.app_drawer_toolbar, this);
         initLauncherSettingsButton();
         initIconButtons();
+        children.getView(R.id.last_app).setOnClickListener(v -> openLastApp());
     }
 
     private void initLauncherSettingsButton() {
@@ -65,10 +72,54 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
         }
     }
 
+    private ComponentName readLastApp() {
+        final String saved = getContext().getSharedPreferences(LAST_PREFS, Context.MODE_PRIVATE)
+                .getString(LAST_KEY, null);
+        return saved == null ? null : ComponentName.unflattenFromString(saved);
+    }
+
+    private void refreshLastApp() {
+        final ImageView icon = children.getImageView(R.id.last_app);
+        final ComponentName component = readLastApp();
+        if (component == null) {
+            icon.setVisibility(View.GONE);
+            return;
+        }
+        try {
+            icon.setImageDrawable(getContext().getPackageManager().getActivityIcon(component));
+            icon.setVisibility(View.VISIBLE);
+        } catch (PackageManager.NameNotFoundException e) {
+            icon.setVisibility(View.GONE);
+        }
+    }
+
+    private void openLastApp() {
+        final ComponentName component = readLastApp();
+        if (component == null) {
+            return;
+        }
+        final Intent intent = Intent.makeMainActivity(component);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+        try {
+            getContext().startActivity(intent);
+        } catch (Exception ignored) {
+            // the app may have been uninstalled
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         applyColumns(getColumns());
+        refreshLastApp();
+    }
+
+    @Override
+    public void onWindowFocusChanged(final boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) {
+            refreshLastApp();
+        }
     }
 
     public void showWifiSwitch(final boolean visible) {
@@ -86,8 +137,7 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
     }
 
     public void setTotalItemsCount(final int itemsCount) {
-        val text = getResources().getString(R.string.total_item_count_label, itemsCount);
-        children.getTextView(R.id.total_items_count).setText(text);
+        // the "Total items" label was replaced by the last app button
     }
 
     @Override
