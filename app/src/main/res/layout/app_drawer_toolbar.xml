@@ -95,7 +95,7 @@
         android:layout_centerVertical="true"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:contentDescription="@null"
         />
 
