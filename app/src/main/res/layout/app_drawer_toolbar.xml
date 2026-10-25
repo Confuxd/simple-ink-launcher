@@ -33,6 +33,34 @@
         android:contentDescription="@null"
         />
 
+    <TextView android:id="@+id/ico_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ico -"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="8dp"
+        android:layout_margin="3dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/ico_plus"
+        />
+
+    <TextView android:id="@+id/ico_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ICO +"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="8dp"
+        android:layout_margin="3dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/wifi_switch"
+        />
+
     <org.ds.simple.ink.launcher.toolbar.WifiSwitch
         android:id="@+id/wifi_switch"
         android:layout_width="wrap_content"
@@ -67,4 +95,5 @@
         android:layout_centerVertical="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
+
 </merge>
