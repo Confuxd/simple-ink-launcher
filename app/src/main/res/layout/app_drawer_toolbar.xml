@@ -81,19 +81,22 @@
         android:padding="8dp"
         android:layout_margin="3dp"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/total_items_count"
+        android:layout_toStartOf="@id/last_app"
         android:contentDescription="@null"
         />
 
-    <TextView android:id="@+id/total_items_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView android:id="@+id/last_app"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:scaleType="fitCenter"
+        android:padding="4dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:contentDescription="@null"
         />
 
 </merge>
