@@ -65,8 +65,8 @@ public class LightService extends AccessibilityService {
                     public void run() {
                         performGlobalAction(GLOBAL_ACTION_BACK);
                     }
-                }, 1500);
+                }, 800);
             }
-        }, 2500);
+        }, 1500);
     }
 }
