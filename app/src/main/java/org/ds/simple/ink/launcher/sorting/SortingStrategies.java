@@ -22,6 +22,7 @@ import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableMap;
 
 import org.ds.simple.ink.launcher.apps.ApplicationInfo;
+import org.ds.simple.ink.launcher.sorting.strategy.MostUsed;
 import org.ds.simple.ink.launcher.sorting.strategy.NameInAscOrder;
 import org.ds.simple.ink.launcher.sorting.strategy.NameInDescOrder;
 import org.ds.simple.ink.launcher.sorting.strategy.ReaderApplicationFirst;
@@ -33,6 +34,7 @@ import lombok.NonNull;
 import lombok.val;
 
 import static org.ds.simple.ink.launcher.sorting.SortingStrategyName.A_Z;
+import static org.ds.simple.ink.launcher.sorting.SortingStrategyName.MOST_USED;
 import static org.ds.simple.ink.launcher.sorting.SortingStrategyName.READER_APP_FIRST;
 import static org.ds.simple.ink.launcher.sorting.SortingStrategyName.Z_A;
 
@@ -50,7 +52,8 @@ public class SortingStrategies {
         sortingStrategiesByName = ImmutableMap.of(
                 READER_APP_FIRST, defaultStrategy,
                 A_Z, NameInAscOrder::new,
-                Z_A, NameInDescOrder::new
+                Z_A, NameInDescOrder::new,
+                MOST_USED, MostUsed::new
         );
     }
 
