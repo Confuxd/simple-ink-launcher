@@ -22,5 +22,6 @@ public enum SortingStrategyName {
 
     READER_APP_FIRST,
     A_Z,
-    Z_A
+    Z_A,
+    MOST_USED
 }
