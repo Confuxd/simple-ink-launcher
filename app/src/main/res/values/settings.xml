@@ -27,7 +27,7 @@
     <string name="reader_preference_section">Reader</string>
     <string name="auto_start_reader_app_key" translatable="false">autoStartReaderApp</string>
     <string name="auto_start_reader_app_title">Run on start up</string>
-    <bool name="auto_start_reader_app_default_value">false</bool>
+    <bool name="auto_start_reader_app_default_value">true</bool>
     <string name="auto_start_reader_app_summary">Automatically run reader application after device boots up</string>
 
     <!-- Launcher section -->
@@ -70,12 +70,12 @@
     <string name="show_backlight_switch_key" translatable="false">showBacklightSwitch</string>
     <string name="show_backlight_switch_title">Show backlight switch</string>
     <string name="show_backlight_switch_summary">Add backlight switch to launcher toolbar</string>
-    <bool name="show_backlight_switch_default_value">false</bool>
+    <bool name="show_backlight_switch_default_value">true</bool>
 
     <string name="show_wifi_switch_key" translatable="false">showWifiSwitch</string>
     <string name="show_wifi_switch_title">Show Wi-Fi switch</string>
     <string name="show_wifi_switch_summary">Add Wi-Fi switch to launcher toolbar</string>
-    <bool name="show_wifi_switch_default_value">false</bool>
+    <bool name="show_wifi_switch_default_value">true</bool>
 
     <string name="toolbar_location_key" translatable="false">toolbarLocation</string>
     <string name="toolbar_location_title">Toolbar location</string>
