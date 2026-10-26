@@ -71,6 +71,14 @@ public class LauncherMainActivity extends BaseLauncherActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (applicationDrawer != null) {
+            applicationDrawer.sortApplications(getApplicationSettings().getSortingStrategy());
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         // block possibility to go back on launcher main activity
     }
