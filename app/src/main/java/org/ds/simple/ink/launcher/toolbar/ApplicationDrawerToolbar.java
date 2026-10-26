@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import org.ds.simple.ink.launcher.LauncherSettingsActivity;
 import org.ds.simple.ink.launcher.R;
@@ -18,9 +18,9 @@ import org.ds.simple.ink.launcher.common.ViewCache;
 
 import lombok.val;
 
-public class ApplicationDrawerToolbar extends RelativeLayout implements ApplicationDrawer.OnTotalItemCountChangeListener,
-                                                                        ApplicationSettings.OnWifiSwitchEnabledChangeListener,
-                                                                        ApplicationSettings.OnBacklightSwitchEnabledChangeListener {
+public class ApplicationDrawerToolbar extends LinearLayout implements ApplicationDrawer.OnTotalItemCountChangeListener,
+                                                                      ApplicationSettings.OnWifiSwitchEnabledChangeListener,
+                                                                      ApplicationSettings.OnBacklightSwitchEnabledChangeListener {
 
     private static final int MIN_COLUMNS = 2;
     private static final int MAX_COLUMNS = 6;
@@ -35,6 +35,7 @@ public class ApplicationDrawerToolbar extends RelativeLayout implements Applicat
 
     public ApplicationDrawerToolbar(final Context context, final AttributeSet attrs) {
         super(context, attrs);
+        setOrientation(HORIZONTAL);
         inflate(context, R.layout.app_drawer_toolbar, this);
         initLauncherSettingsButton();
         initIconButtons();
